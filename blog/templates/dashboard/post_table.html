@@ -1,0 +1,30 @@
+{% extends 'dashboard/layout.html' %}
+{% block content %}
+
+    <div class="content">
+    <div>
+        <table class="table table-striped table-inverse w-100">
+        <tr>
+            <th>id</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th colspan="3" aria-colspan="true" class="text-center">Actions</th>
+
+        {% for post in posts %}
+            <tr data-id="{{post.id}}">
+            <td scope="row"><a>{{post.id}}</a></td>
+            <td scope="row"><a>{{post.title}}</a></td>
+            <td scope="row"><a></a></td>
+            <td scope="row"><a href="" style="color:#fff" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+            </td>
+            <td scope="row"><a href="" style="color:#fff" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+    </div>
+
+
+{% endblock content %}

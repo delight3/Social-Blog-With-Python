@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="mt-5">
+        <div class="bg-light w-25 m-auto p-3">
+            <h4 class="text-primary">{{ heading }}</h4>
+
+            {% for field, errors in form.errors.items() %}
+                <span class="text-danger">{{ ','.join(errors) }}</span>
+            {% endfor %}
+
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.title.label }}
+                    {{ form.title(class="form-control", placeholder="Title") }}
+                </div>
+                <div class="form-group">
+                    {{ form.content.label }}
+                    {{ form.content(class="form-control", placeholder="Content") }}
+                </div>
+                <div>
+                    <div class="tm-product-img-dummy mx-auto" id="cloudUpload">
+                        <i class="fa fa-cloud-upload tm-upload-icon"
+                           onclick="document.getElementById('fileInput').click();"></i>
+                    </div>
+                    <div class="custom-file mt-3 mb-3">
+                        <input id="fileInput" type="file" style="display:none;">
+                        <input type="hidden" name="pictureData" id="pictureData">
+                    </div>
+                </div>
+
+                <div>
+                    {{ form.submit(class="btn btn-block btn-primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        var fileInput = document.getElementById('fileInput');
+        var cloudUpload = document.getElementById('cloudUpload');
+        var picData = document.getElementById('pictureData');
+
+
+        fileInput.onchange = function () {
+            encodeImage(this, picData)
+        };
+
+        function encodeImage(element, myimgdata = '', myimg = '') {
+            var file = element.files[0];
+            var reader = new FileReader();
+            reader.onload = function () {
+                cloudUpload.style.backgroundImage = "url(" + reader.result + ")";
+                cloudUpload.style.backgroundSize = 'contain';
+                cloudUpload.style.backgroundPosition = 'center center';
+                cloudUpload.style.backgroundRepeat = 'no-repeat';
+                {#myimg.style.display = 'block';#}
+                myimgdata.value = reader.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+
+    </script>
+
+
+{% endblock content %}
+
+
+
