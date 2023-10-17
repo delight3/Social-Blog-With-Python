@@ -180,7 +180,7 @@ def contact():
             msg = Message(subject=f'Mail from {sitename}',
                           body=f'Name: {name}\nEmail: {email}\nPhone: {tel}\n\n\nMessage: {message}',
                           sender=email,
-                          recipients=['dlghtsabina@gmail.com'])
+                          recipients=['Your Email'])
             mail.send(msg)
             print(f'name: {name} email: {email} phone: {tel} message: {message}')
             flash(f'successful')
